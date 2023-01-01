@@ -37,7 +37,7 @@ class Stack:
     # the stack is empty if the size of the stack == 0
     def stack_is_empty(self):
         # return self.count == 0
-        if self.stack_size() == 0 or self.count == 0 or self.top == None:   # if stack is empty
+        if self.stack_size() == 0 or self.top == None:   # if stack is empty
             return True
         else:
             return False

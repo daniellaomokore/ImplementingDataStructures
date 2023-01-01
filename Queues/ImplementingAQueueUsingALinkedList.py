@@ -7,10 +7,10 @@ The value of front represents the 'front' node in the Stack. If your queue has 3
 
 If your queue is empty, the value of front will be 'none'.
 
-push - create a new node, assign the rears 'next' node to point to the newNode , re-assign newNode as the current
+enqueue/push - create a new node, assign the rears 'next' node to point to the newNode , re-assign newNode as the current
 'rear' node.
 
-pop - assign variable to current front node, reassign the node directly node next to the current front
+dequeue/pop - assign variable to current front node, reassign the node directly node next to the current front
 node to be the new front node, assign the node next to the as None to delete the initial front node.
 
 peek - returns the front node of queue.
@@ -40,14 +40,14 @@ class Queue:
 
     # the queue is empty if the size of the queue == 0
     def queue_is_empty(self):
-        if self.queue_size() == 0:   # if queue is empty
+        if self.queue_size() == 0 or self.front == None:   # if queue is empty
             return True
         else:
             return False
 
 
     # ADDS ITEM TO REAR OF QUEUE
-    def push(self, value):
+    def enqueue(self, value):
         if self.queue_is_empty():   # if queue is empty
              self.front = self.rear =Node(value)  # initialise a new node and set it to be equal to both the 'front' node and 'rear' node ,
              self.count += 1   # increase the size count of the linked list by 1
@@ -59,11 +59,11 @@ class Queue:
             self.rear = newNode       # reassign the rear pointer to point to the 'newNode'
             self.count += 1           # increase the size count of the linked list by 1
 
-        return "{} has been pushed to your queue".format(value)
+        return "{} has been enqueued to your queue".format(value)
 
 
     # REMOVES ITEM FROM TOP OF QUEUE
-    def pop(self):
+    def dequeue(self):
         # check if queue is empty
         if self.queue_is_empty(): # if queue is empty
             return "Sorry, You can't remove an item as your queue is already empty."
@@ -75,7 +75,7 @@ class Queue:
             # ... so basically making the next node the 'front' of the LL instead
             self.count -= 1         # decrease the size by one
             poppedNode.next = None  # since the node is being deleted, make it's next pointer be equal to nothing
-            return "An item has been popped from your queue"
+            return "An item has been dequeued from your queue"
 
     # RETURNS THE 'TOP' ELEMENT OF THE QUEUE
     def peek(self):
@@ -113,17 +113,17 @@ yellasQueue = Queue() # [none,none,none]   It will start with a capacity of 6, a
 print(yellasQueue.queue_is_empty())   # returns True as the stack is empty
 
 
-print(yellasQueue.push(6))        # 6
-print(yellasQueue.push(7))        # 6 -> 7
+print(yellasQueue.enqueue(6))        # 6
+print(yellasQueue.enqueue(7))        # 6 -> 7
 print(yellasQueue.print_queue())  # 6 -> 7
-print(yellasQueue.push(7))        # 6 -> 7 -> 7
+print(yellasQueue.enqueue(7))        # 6 -> 7 -> 7
 print(yellasQueue.print_queue())  # 6 -> 7 -> 7
 print(yellasQueue.peek())   # returns peek value of 6
 
 print(yellasQueue.queue_is_empty())  # returns False as the stack is not empty
 
-print(yellasQueue.pop())      # 7 -> 7
-print(yellasQueue.pop())      # 7
+print(yellasQueue.dequeue())      # 7 -> 7
+print(yellasQueue.dequeue())      # 7
 
 print(yellasQueue.print_queue())  # 7
 print(yellasQueue.queue_size())   # returns queue size of 1
