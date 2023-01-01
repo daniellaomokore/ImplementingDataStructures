@@ -1,16 +1,16 @@
 """
-Implementing a Queue Data structure using a Linked List
+Implementing a Stack Data structure using a Linked List
 
-Top = is the pointer that points to the index of the very top value of a queue.
+Top = is the pointer that points to the index of the very top value of a stack.
 'Head' refers to Top in the case of Linked Lists.
 
-The value of top represents the 'top' node in the queue. If your queue has 3 elements in it [5,33,8], the value of top will be '8'.
+The value of top represents the 'top' node in the Stack. If your queue has 3 elements in it [5,33,8], the value of top will be '8'.
 
-If your queue is empty, the value of top will be 'none'.
+If your stack is empty, the value of top will be 'none'.
 
 push - create a new node, assign the newNode's 'next' node to point to the current 'Top' node , re-assign newNode as
 the current 'Top' node.
-pop - decrease 'Top' (index) by 1, remove an element from the top of the queue.
+pop - decrease 'Top' (index) by 1, remove an element from the top of the stack.
 peek - returns the actual value of element that the 'Top' pointer is pointing to  (so not it's index, the actual element).
 
 LinkedList stacks technically can't be full so we leave that function out
@@ -26,19 +26,18 @@ class Node:
 class Stack:
 
     # INITIALISING ALL THE RULES/FEATURES OF A STACK
-    def __init__(self):   # remember to get user input for the capacity of the queue
-        self.top = None  # the value of 'top' is initially set to 'None' as we are starting with an empty queue
-        self.count = 0  # count variable to track the size of the queue , it's initally 0 as we start with an empty queue
+    def __init__(self):   # remember to get user input for the capacity of the stack
+        self.top = None  # the value of 'top' is initially set to 'None' as we are starting with an empty stack
+        self.count = 0  # count variable to track the size of the stack , it's initally 0 as we start with an empty stack
 
-    # returns the size of the queue
-    # size of the queue will be the pointer TOP value + 1
+    # returns the size of the stack
     def stack_size(self):
         return self.count
 
-    # the queue is empty if the size of the queue == 0
+    # the stack is empty if the size of the stack == 0
     def stack_is_empty(self):
         # return self.count == 0
-        if self.stack_size() == 0  or self.count == 0 or self.top == None:   # if queue is empty
+        if self.stack_size() == 0 or self.count == 0 or self.top == None:   # if stack is empty
             return True
         else:
             return False
@@ -46,12 +45,11 @@ class Stack:
 
     # ADDS ITEM TO TOP OF STACK
     def push(self, value):
-        # check if queue is full
-        if self.stack_is_empty():   # if queue is empty
+        if self.stack_is_empty():   # if stack is empty
              self.top = Node(value)  # initialise a new node and set the 'Top' pointer to it
              self.count += 1   # increase the size count of the linked list by 1
 
-        else:  # if the queue isn't empty
+        else:  # if the stack isn't empty
 
             newNode = Node(value)  # initialise a new node
             newNode.next = self.top # assign the node directly next to the 'newNode' to be pointing to the current 'Top' node
@@ -59,28 +57,28 @@ class Stack:
             # ... node before the previous 'Top' node so the pointer needs to be updated.
             self.count += 1  # increase the size count of the linked list by 1
 
-        return "{} has been pushed to your queue".format(value)
+        return "{} has been pushed to your stack".format(value)
 
 
     # REMOVES ITEM FROM TOP OF STACK
     def pop(self):
-        # check if queue is empty
-        if self.stack_is_empty(): # if queue is empty
-            return "Sorry, You can't remove an item as your queue is already empty."
-        else:       # if your queue isn't empty, continue the process to pop an item
+        # check if stack is empty
+        if self.stack_is_empty(): # if stack is empty
+            return "Sorry, You can't remove an item as your stack is already empty."
+        else:       # if your stack isn't empty, continue the process to pop an item
 
             poppedNode = self.top  # Assign 'poppedNode' to the current 'Top' Node of the LL
             self.top = self.top.next  # Make the 'Top' node pointer point to the node after the current 'Top' node -
             # ... so basically making the next node the 'Top' of the LL instead
             self.count -= 1         # decrease the size by one
             poppedNode.next = None  # since the node is being deleted, make it's next pointer be equal to nothing
-            return "An item has been popped from your queue"
+            return "An item has been popped from your stack"
 
     # RETURNS THE 'TOP' ELEMENT OF THE STACK
     def peek(self):
 
-        if self.stack_is_empty():  # if the queue is empty
-            return "You can't get to top/peek value as the queue is empty"
+        if self.stack_is_empty():  # if the stack is empty
+            return "You can't get to top/peek value as the stack is empty"
         else:    # if not empty
             top_value = self.top.data
             return top_value
@@ -90,7 +88,7 @@ class Stack:
 
         iternode = self.top
         if self.stack_is_empty():
-            return "Queue Underflow"
+            return "Stack Underflow"
 
         else:
 
@@ -101,27 +99,27 @@ class Stack:
                 if (iternode != None):
                     print(" -> ", end="")
 
-            return "\nQueue Has Been Printed Above"
+            return "\nStack Has Been Printed Above"
 
 
 
 # Driver Code
 
-yellasStack = Stack() # [none,none,none]   It will start with a capacity of 6, and size of 0
+yellasStack = Stack()
 
-print(yellasStack.stack_is_empty())   # returns True as the queue is empty
+print(yellasStack.stack_is_empty())   # returns True as the stack is empty
 
 
-print(yellasStack.push(6))  # [6,none,none]   capacity of 3, size of 1
-print(yellasStack.push(7))  # [6,7,none]      capacity of 3, size of 2
-print(yellasStack.push(7))  # [6,7,7]         capacity of 3, size of 3
+print(yellasStack.push(6))  # 6
+print(yellasStack.push(7))  # 6 -> 7
+print(yellasStack.push(7))  # 6 -> 7 -> 7
 print(yellasStack.peek())   # returns peek value of 7
 
-print(yellasStack.stack_is_empty())  # returns False as the queue is not empty
+print(yellasStack.stack_is_empty())  # returns False as the stack is not empty
 
 
-print(yellasStack.print_stack()) #  [6,7,7]         capacity of 3, size of 3
-print(yellasStack.pop())         # [6,7,none]      capacity fof 3, size of 2
-print(yellasStack.print_stack()) # [6,7,none]      capacity fof 3, size of 2
-print(yellasStack.stack_size())   # returns queue size of 2
+print(yellasStack.print_stack()) #  6 -> 7 -> 7
+print(yellasStack.pop())         # 6 -> 7
+print(yellasStack.print_stack()) # 6 -> 7
+print(yellasStack.stack_size())   # returns stack size of 2
 

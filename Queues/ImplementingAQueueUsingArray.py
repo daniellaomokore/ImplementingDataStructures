@@ -15,13 +15,13 @@ peek - returns the actual value of element that the 'front' pointer is pointing 
 
 class Queue:
 
-    # INITIALISING ALL THE RULES/FEATURES OF A STACK
+    # INITIALISING ALL THE RULES/FEATURES OF A QUEUE
     def __init__(self, capacity):   # remember to get user input for the capacity of the queue
         self.queue = []  # empty queue
         self.front = 0  # front points to the front element of the queue, so will always be at index 0 of an array
         self.rear = -1  # rear points to the index of the last element of the queue, so it's -1 here as the array is empty
         self.capacity = capacity   # queues have a pre-defined maximum capacity
-        self.count = 0  #  initialise the size of the queue to 0 as it's empty, increase by 1 when pushing and decrease by 1 when popping
+        self.count = 0  #  initialise the size count of the queue to 0 as it's empty, increase by 1 when pushing and decrease by 1 when popping
 
     # returns the size of the queue
     # size of the queue will be the pointer TOP value + 1
@@ -88,9 +88,9 @@ print(yellasQueue.queue_is_empty())   # returns True as the queue is empty
 print(yellasQueue.queue_is_full())  # returns False as the queue is not full
 
 
-print(yellasQueue.push(6))  #[6,none,none]   capacity of 3, size of 1
-print(yellasQueue.push(7))  #[6,7,none]      capacity of 3, size of 2
-print(yellasQueue.push(7))  #[6,7,7]         capacity of 3, size of 3
+print(yellasQueue.push(6))  # [6,none,none]   capacity of 3, size of 1
+print(yellasQueue.push(7))  # [6,7,none]      capacity of 3, size of 2
+print(yellasQueue.push(7))  # [6,7,7]         capacity of 3, size of 3
 print(yellasQueue.peek())   # returns peek value of 6
 
 print(yellasQueue.queue_is_full())  # returns True as the queue is full
@@ -99,8 +99,9 @@ print(yellasQueue.queue_is_empty())  # returns False as the queue is not empty
 
 print(yellasQueue.print_queue()) #  [6,7,7]         capacity of 3, size of 3
 print(yellasQueue.push(6))
-print(yellasQueue.pop())         # [6,7,none]      capacity fof 3, size of 2
-print(yellasQueue.print_queue()) # [6,7,none]      capacity fof 3, size of 2
+print(yellasQueue.pop())         # [7,7,none]      capacity fof 3, size of 2
+
+print(yellasQueue.print_queue()) # [7,7,none]      capacity fof 3, size of 2
 print(yellasQueue.queue_size())   # returns queue size of 2
 
 
