@@ -6,9 +6,9 @@ The value of front represents the index number for the 'front' element in the qu
 The front value is constant and will ALWAYS be 0 as 0 index is the first element in an array.
 
 
-enqueue/push - increase rear pointer index by 1, increase size count by 1,  add your element to the rear of the queue.
+enqueue - increase rear pointer index by 1, increase size count by 1,  add your element to the rear of the queue.
 
-dequeue/pop - decrease rear pointer index by 1, decrease size count by 1, remove an element from the front of the queue.
+dequeue - decrease rear pointer index by 1, decrease size count by 1, remove an element from the front of the queue.
 
 peek - returns the actual value of element that the 'front' pointer is pointing to (so not it's index, the actual element).
 

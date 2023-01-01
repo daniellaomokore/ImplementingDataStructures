@@ -7,10 +7,10 @@ The value of front represents the 'front' node in the Stack. If your queue has 3
 
 If your queue is empty, the value of front will be 'none'.
 
-enqueue/push - create a new node, assign the rears 'next' node to point to the newNode , re-assign newNode as the current
+enqueue - create a new node, assign the rears 'next' node to point to the newNode , re-assign newNode as the current
 'rear' node.
 
-dequeue/pop - assign variable to current front node, reassign the node directly node next to the current front
+dequeue - assign variable to current front node, reassign the node directly node next to the current front
 node to be the new front node, assign the node next to the as None to delete the initial front node.
 
 peek - returns the front node of queue.
