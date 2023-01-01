@@ -23,7 +23,7 @@ class Queue:
         self.front = 0  # front points to the front element of the queue, so will always be at index 0 of an array
         self.rear = -1  # rear points to the index of the last element of the queue, so it's -1 here as the array is empty
         self.capacity = capacity   # queues have a pre-defined maximum capacity
-        self.count = 0  #  initialise the size count of the queue to 0 as it's empty, increase by 1 when you enqueue and decrease by 1 when dequeue
+        self.count = 0  #initialise the size count of the queue to 0 as it's empty, increase by 1 when you enqueue and decrease by 1 when dequeue
 
     # returns the size of the queue
     # size of the queue will be the pointer TOP value + 1
