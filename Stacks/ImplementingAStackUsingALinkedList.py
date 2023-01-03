@@ -19,7 +19,7 @@ LinkedList stacks technically can't be full so we leave that function out
 
 class Node:
 
-    def __init__(self,data):
+    def __init__(self, data):
         self.data = data
         self.next = None  # When you initialise a node at first it's pointer isn't pointing to anything, you decide that while making the LL
 
