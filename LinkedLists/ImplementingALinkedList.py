@@ -202,20 +202,22 @@ print(myLL.insert_at_tail(9))
 print(myLL.insert_at_tail(10))
 
 print("Size of linked list:", myLL.size())
-print(myLL.search(7))
+print(myLL.search(78))
+print(myLL.search(5))
 
-print(myLL.print_LinkedList())
+
 print(myLL.return_LinkedList())
 
-print(myLL.delete_at_head())
-print(myLL.return_LinkedList())
+
 print(myLL.delete_at_index(1))
-print(myLL.return_LinkedList())
-
-print(myLL.delete_at_tail())
-print(myLL.return_LinkedList())
-print(myLL.delete_at_tail())
 print(myLL.return_LinkedList())
 
 print(myLL.insert_at_index(66, 3))
 print(myLL.return_LinkedList())
+
+print(myLL.delete_at_tail())
+print(myLL.return_LinkedList())
+
+print(myLL.delete_at_head())
+print(myLL.return_LinkedList())
+
