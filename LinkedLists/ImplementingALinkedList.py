@@ -28,6 +28,9 @@ class LinkedList:
         self.head = head
         self.length_count = 0
 
+
+
+
     def insert_at_head(self, data):
         if self.head is None:  # if the linked list is empty
             self.head = Node(data)
@@ -40,6 +43,9 @@ class LinkedList:
             self.length_count += 1
 
         return "{} has been inserted at the Head of the Linked List.".format(data)
+
+
+
 
     def insert_at_tail(self, data):
         if self.head is None:  # if the linked list is empty
@@ -85,6 +91,9 @@ class LinkedList:
             self.length_count -= 1
             return "Node at the head has been deleted"
 
+
+
+
     def delete_at_tail(self):
 
         current_node = self.head  # We set the head node as our current node then iterate through the linked list until we reach the tail
@@ -98,7 +107,6 @@ class LinkedList:
         self.length_count -= 1
 
         return "Tail has been deleted"
-
 
 
 
@@ -126,6 +134,9 @@ class LinkedList:
 
         return current_node  # returns the value of the node at that index
 
+
+
+
     def search(self,node):
 
         if self.head is None:    # if the list is empty
@@ -143,8 +154,13 @@ class LinkedList:
             return "{} is not in the Linked List".format(node)
 
 
+
+
     def size(self):
         return self.length_count
+
+
+
 
     def print_LinkedList(self):
 
@@ -156,6 +172,9 @@ class LinkedList:
         while current_node is not None:          # while our current node is not the tail node
             print(current_node.data, "->", end=" ")   # print the data of the current node
             current_node = current_node.next_node     # then move to the next node in the Linked List
+
+
+
 
     def return_LinkedList(self):
 
