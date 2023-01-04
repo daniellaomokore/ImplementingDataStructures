@@ -55,6 +55,33 @@ class LinkedList:
 
         return "{} has been inserted at the Tail of the Linked List.".format(data)
 
+"""def insert_after_node(self, data, previous_node):
+        if previous_node is None:
+            print("The given previous node must inLinkedList.")
+            return
+
+        else:
+            new_node = Node(data)  # Create a new node with the data
+
+            new_node.next_node = previous_node.next_node  # Make next of new Node as next of prev_node
+
+            previous_node.next_node = new_node  # make next of prev_node as new_node"""
+
+"""   
+    def delete_at_tail(self):
+        current_node = self.head  # We set the head node as our current node then iterate through the linked list until we reach the tail
+        while True:
+            if current_node.next_node is None:  # if the current node is the tail node,
+                current_node.next_node
+
+
+
+
+                self.length_count -= 1
+                break
+            else:  # else move onto the next node in the LL
+                current_node = current_node.next_node
+"""
     def delete_at_head(self):
 
         if self.head is None:
@@ -66,6 +93,29 @@ class LinkedList:
             current_node = None                 # re-assign the current node copy of the original head to None to delete it
             self.length_count -= 1
             return "Node at the head has been deleted"
+
+"""  
+    def delete_node(self, node_to_delete):
+
+        if self.head is None:
+            print("You can't delete a node as the linked list is empty")
+        else:
+
+            current_node = self.head  # make a copy of the LL head to variable 'current_node'
+
+            previous_node = None
+
+            if current_node.data == node_to_delete:
+
+
+
+            self.head = current_node.next_node  # assign the head of the LL to be the node next to the head
+            current_node = None                 # re-assign the current node copy of the original head to None to delete it
+            self.length_count -= 1
+            return "{} has been deleted".format(delete_node())
+
+ 
+"""
 
 
     def search(self,node):
@@ -129,6 +179,4 @@ print(myLL.size())
 print(myLL.search(7))
 
 print(myLL.print_LinkedList())
-print(myLL.return_LinkedList())
-print(myLL.delete_at_head())
 print(myLL.return_LinkedList())
