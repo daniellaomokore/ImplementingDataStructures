@@ -4,7 +4,7 @@ Implementing a LinkedList
 
 OPERATIONS:
 
--Insert/delete - You can insert/delete into the head, end or after a given node in the linked list.
+-Insert/delete - You can insert/delete into the head, tail or at an index/position node in the linked list.
 
 -Size - returns the size of the linked list
 
@@ -42,7 +42,7 @@ class LinkedList:
             self.head = new_node
             self.length_count += 1
 
-        return "{} has been inserted at the Head of the Linked List.".format(data)
+        return "{} inserted at Head.".format(data)
 
 
 
@@ -61,22 +61,31 @@ class LinkedList:
             else:  # else move onto the next node in the LL
                 current_node = current_node.next_node
 
-        return "{} has been inserted at the Tail of the Linked List.".format(data)
+        return "{} inserted at Tail.".format(data)
 
-    """def insert_at_index(self, data, index):
 
-        if index == 0:   # if the index for the head has been input
+
+
+    def insert_at_index(self, data, index):
+
+        if self.head == None or index == 0:   # if the list is empty or you want to insert at the first element of the list
             self.insert_at_head(data)
             return
 
         else:
+
+            previous_node = self.get_node_at_index(index - 1)
+
             new_node = Node(data)
 
-            previous_node = self.get_node_at_index(index-1)
-            new_node.next_node = previous_node.next_node
-            previous_node.next_node = new_node
+            new_node.next_node = previous_node.next_node   # set the new nodes next node to point to node that is currrently at the index you want to insert at
+            previous_node.next_node = new_node             # set the previous node of the index to point to our new node
 
-        return "The {} has been inserted at index {}".format(data, index)"""
+            self.length_count += 1
+
+        return "{} inserted at index {}".format(data, index)
+
+
 
 
     def delete_at_head(self):
@@ -89,7 +98,7 @@ class LinkedList:
             self.head = current_node.next_node  # assign the head of the LL to be the node next to the head
             current_node = None                 # re-assign the current node copy of the original head to None to delete it
             self.length_count -= 1
-            return "Node at the head has been deleted"
+            return "Head Node deleted"
 
 
 
@@ -100,20 +109,20 @@ class LinkedList:
 
 
         while current_node.next_node.next_node != None:  # while the current node is not, node before the tail node
-            current_node = current_node.next_node  # move to next node in the ll 
+            current_node = current_node.next_node  # move to next node in the ll
 
         current_node.next_node = None              # set the node 1 before the tail node to 'None' to delete the tail node
 
         self.length_count -= 1
 
-        return "Tail has been deleted"
+        return "Tail Node deleted"
 
 
 
 
     def delete_at_index(self,index):
 
-        if index == 0:   # if the index for the head has been input
+        if index == 0:   # if you want to delete the first node of the ll
             self.delete_at_head()
 
         previous_node = self.get_node_at_index(index-1)
@@ -203,7 +212,6 @@ print(myLL.insert_at_head(33))
 print(myLL.insert_at_tail(5))
 print(myLL.insert_at_tail(9))
 print(myLL.insert_at_tail(10))
-"""print(myLL.insert_after_node(86,10))"""
 
 print(myLL.size())
 print(myLL.search(7))
@@ -218,4 +226,9 @@ print(myLL.return_LinkedList())
 print(myLL.delete_at_tail())
 print(myLL.return_LinkedList())
 print(myLL.delete_at_tail())
+print(myLL.return_LinkedList())
+
+
+
+print(myLL.insert_at_index(66,3))
 print(myLL.return_LinkedList())
