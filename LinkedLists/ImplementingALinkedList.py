@@ -10,6 +10,8 @@ OPERATIONS:
 
 -Search - searches linked list for a node containing the requested data and returns that node if found
 
+-get_node_at_index - finds the node at a certain index
+
 """
 
 
@@ -55,6 +57,22 @@ class LinkedList:
 
         return "{} has been inserted at the Tail of the Linked List.".format(data)
 
+    """def insert_at_index(self, data, index):
+
+        if index == 0:   # if the index for the head has been input
+            self.insert_at_head(data)
+            return
+
+        else:
+            new_node = Node(data)
+
+            previous_node = self.get_node_at_index(index-1)
+            new_node.next_node = previous_node.next_node
+            previous_node.next_node = new_node
+
+        return "The {} has been inserted at index {}".format(data, index)"""
+
+
     def delete_at_head(self):
 
         if self.head is None:
@@ -67,6 +85,46 @@ class LinkedList:
             self.length_count -= 1
             return "Node at the head has been deleted"
 
+    def delete_at_tail(self):
+
+        current_node = self.head  # We set the head node as our current node then iterate through the linked list until we reach the tail
+
+
+        while current_node.next_node.next_node != None:  # while the current node is not, node before the tail node
+            current_node = current_node.next_node  # move to next node in the ll 
+
+        current_node.next_node = None              # set the node 1 before the tail node to 'None' to delete the tail node
+
+        self.length_count -= 1
+
+        return "Tail has been deleted"
+
+
+
+
+
+    def delete_at_index(self,index):
+
+        if index == 0:   # if the index for the head has been input
+            self.delete_at_head()
+
+        previous_node = self.get_node_at_index(index-1)
+
+        previous_node.next_node = previous_node.next_node.next_node # make the previous node to our element point to the node after our element to delete it
+        self.length_count -= 1
+        return "The node at index {} has been deleted".format(index)
+
+
+
+
+    def get_node_at_index(self,index):
+        current_node = self.head
+
+        while index > 0:  # while the current node is not the head node
+            current_node = current_node.next_node  # transverse to the next node in the ll
+            index -= 1   # decrement index by 1 everytime we loop through until we find the node at our index
+
+        return current_node  # returns the value of the node at that index
 
     def search(self,node):
 
@@ -121,6 +179,9 @@ myLL = LinkedList()
 
 print(myLL.insert_at_head(6))
 print(myLL.insert_at_head(7))
+print(myLL.insert_at_head(8))
+print(myLL.insert_at_head(33))
+print(myLL.insert_at_tail(5))
 print(myLL.insert_at_tail(9))
 print(myLL.insert_at_tail(10))
 """print(myLL.insert_after_node(86,10))"""
@@ -130,5 +191,12 @@ print(myLL.search(7))
 
 print(myLL.print_LinkedList())
 print(myLL.return_LinkedList())
+
 print(myLL.delete_at_head())
+#print(myLL.delete_at_index(0))
+print(myLL.return_LinkedList())
+
+print(myLL.delete_at_tail())
+print(myLL.return_LinkedList())
+print(myLL.delete_at_tail())
 print(myLL.return_LinkedList())
