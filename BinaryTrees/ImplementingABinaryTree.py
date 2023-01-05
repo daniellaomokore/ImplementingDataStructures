@@ -13,7 +13,7 @@ right node, otherwise it's inserted left.
 -find_value - this check if a value exists in the tree or not. When searching for a node in a tree, we transverse the
 node from left to right with a parent.
 
-- print_tree - prints the tree values
+- print_tree_in_order - prints the tree 'in order' which is -> left then root then right
 """
 
 
@@ -66,13 +66,13 @@ class Node:
             return "{} is Found".format(value)
 
     # uses recursion
-    def print_tree(self):
+    def print_tree_in_order(self):
         if self.left:  # if there's a left child
-            self.left.print_tree()
+            self.left.print_tree_in_order()
         print(self.data)
 
         if self.right:  # if there's a right child
-            self.right.print_tree()
+            self.right.print_tree_in_order()
 
 
 root = Node(27)
@@ -82,7 +82,7 @@ print(root.insert(31))
 print(root.insert(10))
 print(root.insert(9))
 
-root.print_tree()
+root.print_tree_in_order()
 
 print(root.find_value(7))
 print(root.find_value(14))
