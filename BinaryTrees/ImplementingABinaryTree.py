@@ -51,29 +51,21 @@ class Node:
         if value < self.data:  # if the value you want to find is smaller than the parent node
             if self.left is None:    # if the parent node has no left child
                 return "{} is not Found".format(value)
-            else:     # if the parent node has a left child
-                return self.left.find_value(value)  # search that node and it's child nodes to see if the value you are searching for is one of them - you're basically moving down the left side of the tree
-
+            return self.left.find_value(value)  # search that node and it's child nodes to see if the value you are searching for is one of them - you're basically moving down the left side of the tree
         elif value > self.data:
             if self.right is None:  # if the parent node has no right child
                 return "{} is not Found".format(value)
-            else:  # if the parent node has a right child
-                return self.right.find_value(value)  # search that node and it's child nodes to see if the value you are searching for is one of them - you're basically moving down the right side of the tree
-
+            return self.right.find_value(value)  # search that node and it's child nodes to see if the value you are searching for is one of them - you're basically moving down the right side of the tree
         else:   # if the parent node the value of node you are searching is equal
             return "{} is Found".format(value)
 
     # uses recursion
     def print_tree(self):
         if self.left:  # if there's a left child
-            self.left.print_tree()  #
-        else:
-            print(self.data)
-
+            self.left.print_tree()
+        print(self.data)
         if self.right:  # if there's a right child
             self.right.print_tree()
-        else:
-            print(self.data)
 
 
 root = Node(27)
