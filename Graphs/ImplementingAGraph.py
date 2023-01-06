@@ -76,6 +76,12 @@ class Graph:
     def find_shortest_path(self, graph,start, end, path = None):
         pass
 
+    def delete_edge(self):
+        pass
+
+    def delete_vertex(self):
+        pass
+
 
 
 # Create the dictionary with graph elements
