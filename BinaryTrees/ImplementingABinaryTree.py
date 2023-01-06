@@ -95,3 +95,17 @@ In this tree value 7 is not there so it gives the output as 7 not found.
 
 
 """
+
+"Interview Qs"
+
+# Find the minimum and maximum value in a binary search tree
+# Find the minimum and maximum height of a binary search tree
+# Find the height of a binary search tree
+# Find kth maximum value in binary search tree
+# Find nodes at "K" distance from the root
+# Find ancestors of a given node in a binary tree
+# Use Breadth First Search
+# Use Depth First Search
+# Delete a node with one child
+# Delete a node with two children
+# Invert a Binary Tree

@@ -1,5 +1,4 @@
 """
-
 Implementing a Graph
 
 OPERATIONS:
@@ -11,7 +10,6 @@ OPERATIONS:
 - get_vertices
 
 - get_edges
-
 
 """
 
@@ -75,6 +73,9 @@ class Graph:
         else:
             self.gdict[vrtx1] = [vrtx2]
 
+    def find_shortest_path(self, graph,start, end, path = None):
+        pass
+
 
 
 # Create the dictionary with graph elements
@@ -99,3 +100,16 @@ print(g.add_edge({'a','c'}))
 
 print(g.get_vertices())
 print(g.get_edges())
+
+"Interview Qs"
+
+"""
+- Implement Breadth and Depth First Search
+
+- Check if a graph is a tree or not
+
+- Count the number of edges in a graph
+
+- Find the shortest path between two vertices
+
+"""

@@ -103,3 +103,14 @@ print(yellasQueue.dequeue())  # [7,7,none]      capacity fof 3, size of 2
 
 print(yellasQueue.print_queue())  # [7,7,none]      capacity fof 3, size of 2
 print(yellasQueue.queue_size())  # returns queue size of 2
+
+"Interview Qs"
+
+"""
+- Implement a stack using a queue
+
+- Reverse first K elements of a queue
+
+- Generate binary numbers from 1 to n using a queue
+
+"""

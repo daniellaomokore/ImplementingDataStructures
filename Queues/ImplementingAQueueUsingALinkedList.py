@@ -127,3 +127,14 @@ print(yellasQueue.dequeue())      # 7
 
 print(yellasQueue.print_queue())  # 7
 print(yellasQueue.queue_size())   # returns queue size of 1
+
+"Interview Qs"
+
+"""
+- Implement a stack using a queue
+
+- Reverse first K elements of a queue
+
+- Generate binary numbers from 1 to n using a queue
+
+"""

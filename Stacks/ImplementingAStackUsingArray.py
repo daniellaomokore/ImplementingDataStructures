@@ -112,10 +112,21 @@ print(yellasStack.stack_size())   # returns stack size of 2
 
 
 
+"Interview Qs"
+
+"""
+- Evaluate postfix expression using a stack
+
+- Sort values in a stack
+
+- Check balanced parenthesis in an expression
+
+"""
+
 """
 Interview add on functions would be
 
-# the 'min queue' question
+# the 'min stack' question
 
 https://www.youtube.com/watch?v=qkLl7nAwDPo
 """
