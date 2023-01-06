@@ -65,6 +65,9 @@ class Node:
         else:   # if the parent node the value of node you are searching is equal
             return "{} is Found".format(value)
 
+    def delete(self, node):
+        pass
+
     # uses recursion
     def print_tree_in_order(self):
         if self.left:  # if there's a left child
