@@ -269,3 +269,14 @@ print(myLL.return_LinkedList())
 
 print(myLL.delete_at_head())
 print(myLL.return_LinkedList())
+
+"Interview Qs"
+
+"""
+
+- Reverse a linked list
+- Detect loop in a linked list
+- Return Nth node from the end in a linked list
+- Remove duplicates from a linked list
+
+"""
