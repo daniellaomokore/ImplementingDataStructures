@@ -182,8 +182,7 @@ class LinkedList:
         # initialise pointers
         previous = None
         current = self.head
-        nxt = self.head.next
-
+        
         while current is not None:
             nxt = current.next  # temporary variable to save 'current.next'
 
