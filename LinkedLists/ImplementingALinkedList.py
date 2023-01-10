@@ -126,6 +126,14 @@ class LinkedList:
 
         return current_node  # returns the value of the node at that index
 
+    # use two pointers which are n+1 spaces apart2
+    # move both pointers to the right but 1 each time
+    # when the right pointer = None , the right pointer has reached the None of the linked list (one after the tail which the tail points to)
+    # and the left will be in the position one node before the node we want to delete
+    # so you can do the left pointer.next == left pointer.next.next to delete the node we need to remove
+
+
+
     def search(self, node):
 
         if self.head is None:  # if the list is empty
@@ -175,49 +183,47 @@ class LinkedList:
 
     "LEETCODE INTERVIEW QUESTIONS BELOW"
 
-
     # correct answer below
     # https://www.youtube.com/watch?v=G0_I-ZF0S38
     def reverse_a_linked_list(self):
         # initialise pointers
         previous = None
         current = self.head
-        
-        while current is not None:
+
+        while current is not None:  # while you're not at the end of the list
             nxt = current.next  # temporary variable to save 'current.next'
 
-            current.next = previous
+            current.next = previous  # reversing the pointer's direction
             previous = current
 
             current = nxt
 
         return previous  # the result is stored in previous when the loop stops executing
 
-
     # correct answer below
     # https://www.youtube.com/watch?v=XIdigk956u0
     # keep in mind you can't run this here due to not actually having list 1 and list2
     # Use the original node, don't create copies of the nodes
-    # As the answer we are asked to : Return the head of the merged linked list.
-    def merge_two_sorted_lists(self, list1,list2):
-        dummy = Node(0)            # create a dummy node to start a new linked list that we can insert node into in order
-        tail = dummy               # you assign the tail pointer to the dummy node so that it's easy to add to the end of the list, yo don't have to iterate through the entire ll each time
+    # As the answer we are asked to: Return the head of the merged linked list.
+    def merge_two_sorted_lists(self, list1, list2):
+        dummy = Node(0)  # create a dummy node to start a new linked list that we can insert node into in order
+        tail = dummy  # you assign the tail pointer to the dummy node so that it's easy to add to the end of the list, you don't have to iterate through the entire ll each time
 
-        while list1 and list2: # while both lists are not empty - so we can compare
+        while list1 and list2:  # while both lists are not empty - so we can compare
             if list1.data < list2.data:
-                tail.next = list1                         # insert the list1 node into the linked list with the dummy node
-                list1 = list1.next                        # now update the list1 pointer to move to the next node in the ll
+                tail.next = list1  # insert the list1 node into the linked list with the dummy node
+                list1 = list1.next  # now update the list1 pointer to move to the next node in the ll
             elif list2.data < list1.data:
-                tail.next = list2                         # insert the list2 node into the linked list with the dummy node
-                list2 = list2.next                        # now update the list2 pointer to move to the next node in the ll
-            tail = tail.next                              # move the tail pointer one to the right in the ll since we just added a node from one of the lists
+                tail.next = list2  # insert the list2 node into the linked list with the dummy node
+                list2 = list2.next  # now update the list2 pointer to move to the next node in the ll
+            tail = tail.next  # move the tail pointer one to the right in the ll since we just added a node from one of the lists
 
-        if list1:                                         # if list1 is the only list that's not empty - meaning list 2 is now empty and there's nothing else to compare list 1 nodes against...
-            tail.next = list1                             # take the remaining portion of the list and insert it to the tail of the newly formed linked list
-        elif list2:                                       # if list2 is the only list that's not empty - meaning list 1 is now empty and there's nothing else to compare list 2 nodes against...
-            tail.next = list2                             # take the remaining portion of the list and insert it to the tail of the newly formed linked list
+        if list1:  # if list1 is the only list that's not empty - meaning list 2 is now empty and there's nothing else to compare list 1 nodes against...
+            tail.next = list1  # take the remaining portion of the list and insert it to the tail of the newly formed linked list
+        elif list2:  # if list2 is the only list that's not empty - meaning list 1 is now empty and there's nothing else to compare list 2 nodes against...
+            tail.next = list2  # take the remaining portion of the list and insert it to the tail of the newly formed linked list
 
-            return dummy.next  # Return the head of the merged linked list.
+            return dummy.next   # 'the '.next' is important as we don't want to include the dummy node'
 
     # correct answer below
     # https://www.youtube.com/watch?v=gBTe7lFR3vc
@@ -228,7 +234,7 @@ class LinkedList:
         slowPointer = self.head
         fastPointer = self.head
 
-        while fastPointer and fastPointer.next is not None: # -> while no cycle has been detected
+        while fastPointer and fastPointer.next is not None:  # -> while no cycle has been detected
 
             slowPointer = slowPointer.next  # shifting the slow pointer one to the right
             fastPointer = fastPointer.next.next  # shifting the fast pointer two to the right
@@ -238,7 +244,40 @@ class LinkedList:
 
         return False  # no cycle detected
 
+    def remove_nth_node_from_end_of_list(self, n):
+        dummy_node = Node(0)
+        dummy_node.next = self.head
+        left = dummy_node
+        right = self.head
 
+        # this is so the right pointer is n steps ahead of the head
+        while n > 0 and right:
+            right = right.next
+            n -= 1
+
+        while right:  # while right is not None
+            left = left.next       # move the left and right pointer to the right once
+            right = right.next
+
+        # delete node n
+        left.next = left.next.next
+        return dummy_node.next  # 'the '.next' is important as we don't want to include the dummy node'
+
+
+    # note we have to use .data in this question because when we make comparison we are comparing the actual Value of the nodes and not just pointer positions like in the 'linkedlistcycle' question
+    def remove_duplicates_from_a_sorted_linked_list(self):
+
+        current = self.head
+
+        while current:  # while current is not None
+
+            #note we have to write them in this specific order as we need to ensure 'curren.next' is not None FIRST otherwise if it's the otherway round but 'current.next' is None, it wouldn't have caught it out, causing an error when comparing the 'current data == None'
+            while current.next and current.data == current.next.data:   #  while the value next to the current value isn't None AND the current value and the value next to the current value are equal
+                current.next = current.next.next  # delete node
+            #  when the nodes aren't the same
+            current = current.next  # move current to the next node
+
+        return self.head   # we can return head since head never changes, no dummy node was needed
 
 
 myLL = LinkedList()
@@ -269,13 +308,16 @@ print(myLL.return_LinkedList())
 print(myLL.delete_at_head())
 print(myLL.return_LinkedList())
 
+
 "Interview Qs"
 
-"""
-
-- Reverse a linked list
-- Detect loop in a linked list
-- Return Nth node from the end in a linked list
-- Remove duplicates from a linked list
 
 """
+
+- Reverse a linked list -
+- Detect loop in a linked list -
+- Return Nth node from the end in a linked list -
+- Remove duplicates from a linked list -
+
+"""
+
