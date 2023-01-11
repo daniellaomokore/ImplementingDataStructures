@@ -280,6 +280,54 @@ class LinkedList:
         return self.head   # we can return head since head never changes, no dummy node was needed
 
 
+
+    # correct solution
+    # Split list, Reverse second half of list, merge two lists
+    def reorderList(self,list):
+
+    # split list into 2
+        slowPointer = self.head
+        fastPointer = self.head.next
+
+        while fastPointer and fastPointer.next is not None:
+            slowPointer = slowPointer.next
+            fastPointer = fastPointer.next.next
+
+        list2 = slowPointer.next
+        slowPointer.next = None # here we have removed the list 2 portion from the original list to split them
+        previous = None
+
+    # reverse list2
+        while list2 is not None:
+            tempNode = list2.next  # we need a tempNode here as when we reverse the node we break the pointer. so tempNode keeps store of the current.next node
+
+            list2.next = previous   # swap the direction by making your current lis2 node point to previous
+            previous = list2  # update the pointer to the previous node now be your current list 2 pointer
+            list2 = tempNode  # update the pointer to current list 2 node to be the next node in your list
+
+    # merge the two half's of the list
+
+    # note that after reversing list2, 'previous' will be set to the head of list 2
+
+        list1 = self.head
+        list2 = previous
+
+        while list2 is not None: # we use the list2 here only list 2 could shorter than the list1 when we split the original list into 2- so we base it off of that. For example if the list was made up of 3 nodes, the first hald of the list would be the first 3 nodes and the second half of the list would be the remaining 2 nodes
+            # we need a tempNodes here because when we reverse the nodes we break the pointer. so temps keeps store of the current.next node
+            tempList1 = list1.next
+            tempList2 = list2.next
+
+            list1.next = list2  # we make our current node in list 1 point to the current node of list 2
+            list2.next = tempList1 # and our current list 2 to node point to the next node of list 1
+
+            list1 = tempList1 # now the current list 1 node has been moved one to the right
+            list2 = tempList2 # and the current list 2 node has been moved one to the right
+
+
+
+
+
+
 myLL = LinkedList()
 
 print(myLL.insert_at_head(6))
