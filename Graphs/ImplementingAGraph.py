@@ -71,16 +71,27 @@ class Graph:
         else:
             self.graph_dict[node].append(neighbour)  # we append to the dict so that we can continually add edge connections to the current value when new edges are made, instead of resetting the value of the key
 
-    def find_all_paths_between_two_nodes(self,start,end,path=[]):
-        path = path + [start]
 
-        if start == end:
-            return path
+    # given a directed acyclic graph,
+    # DFS recursion
+    # find all possible paths from node 0 to node n-1 and return them in any order
+    def find_all_paths_between_two_nodes(self):
 
-        for node in self.graph_dict[start]:
+        end_node = len(self.graph_dict) - 1
+        result = []
+        path = []
+        def dfs(start, path, result):
 
+            if start == end_node:    # if we find a complete path from the start node to the end node, we append this path to the result list
+                result.append(path)
 
+            for next_node in self.graph_dict[start]:  # for each node connected to the 'start' node by an edge
+                path = path+[next_node] # add the next node to the path
 
+                dfs(next_node, path, result) # use recursion to continue adding more nodes to the path until the path is complete and add the complete path to 'result'
+
+        # for the dfs function to actually start working we need to call it
+        dfs(0,[0])   # start is 0 since it's 0 in the question, every the path list will be initlaised with 0 since 0 will always be the start of every path
 
 
     def find_shortest_path(self, graph, start, end, path=None):
