@@ -75,11 +75,11 @@ class Graph:
     # given a directed acyclic graph,
     # DFS recursion
     # find all possible paths from node 0 to node n-1 and return them in any order
+    # https://www.youtube.com/watch?v=xM8uxH0vcRw
     def find_all_paths_between_two_nodes(self):
 
         end_node = len(self.graph_dict) - 1
-        result = []
-        path = []
+
         def dfs(start, path, result):
 
             if start == end_node:    # if we find a complete path from the start node to the end node, we append this path to the result list
@@ -90,9 +90,13 @@ class Graph:
 
                 dfs(next_node, path, result) # use recursion to continue adding more nodes to the path until the path is complete and add the complete path to 'result'
 
-        # for the dfs function to actually start working we need to call it
-        dfs(0,[0])   # start is 0 since it's 0 in the question, every the path list will be initlaised with 0 since 0 will always be the start of every path
 
+        result = []
+
+        # for the dfs function to actually start working we need to call it
+        dfs(0, [0], result)   # start is 0 since it's 0 in the question & the path list will be initlaised with 0 since 0 will always be the start of every path
+
+        return result
 
     def find_shortest_path(self, graph, start, end, path=None):
         pass
