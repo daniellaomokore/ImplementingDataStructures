@@ -2,16 +2,12 @@
 Implementing a Graph
 
 OPERATIONS:
-
 - add_vertices
-
 - add edges
-
 - show_vertices
-
 - show_edges
-
 """
+
 
 class Graph:
 
@@ -41,8 +37,10 @@ class Graph:
         edge_connections = []
 
         for node in self.graph_dict:  # accessing the keys of the graph dict --> node/vertices
-            for neighbour in self.graph_dict[node]:   # accessing the values of the key value paris in the graph dict --> neighbouring edge connections
-                if {node, neighbour} not in edge_connections:  # if the edge connection for the node and neighbour hasn't already been added to the list..
+            for neighbour in self.graph_dict[node]:  # accessing the values of the key value paris in the graph dict
+                # --> neighbouring edge connections
+                if {node, neighbour} not in edge_connections:  # if the edge connection for the node and neighbour
+                    # hasn't already been added to the list..
                     edge_connections.append({node, neighbour})  # append the edge connections to the list
 
         return edge_connections
@@ -67,10 +65,11 @@ class Graph:
         """
 
         if node not in self.graph_dict:  # if the node you want to create an edge connection from doesn't already exist...
-            self.graph_dict[node] = [neighbour]   # create it and set it as a new node key and add the neighbour connection to it as a value
+            self.graph_dict[node] = [
+                neighbour]  # create it and set it as a new node key and add the neighbour connection to it as a value
         else:
-            self.graph_dict[node].append(neighbour)  # we append to the dict so that we can continually add edge connections to the current value when new edges are made, instead of resetting the value of the key
-
+            self.graph_dict[node].append(neighbour)  # we append to the dict so that we can continually add edge
+            # connections to the current value when new edges are made, instead of resetting the value of the key
 
     # given a directed acyclic graph,
     # DFS recursion
@@ -82,23 +81,37 @@ class Graph:
 
         def dfs(start, path, result):
 
-            if start == end_node:    # if we find a complete path from the start node to the end node, we append this path to the result list
+            if start == end_node:  # if we find a complete path from the start node to the end node, we append this path to the result list
                 result.append(path)
 
-            for next_node in self.graph_dict[start]:  # for each node connected to the 'start' node by an edge
-                path = path+[next_node] # add the next node to the path
+            for node in self.graph_dict[start]:  # for each node connected to the 'start' node by an edge
+                path = path + [node]  # add the node to the path
 
-                dfs(next_node, path, result) # use recursion to continue adding more nodes to the path until the path is complete and add the complete path to 'result'
-
+                dfs(node, path, result)  # use recursion to continue adding more nodes to the path until the path is complete and add the complete path to 'result'
 
         result = []
 
         # for the dfs function to actually start working we need to call it
-        dfs(0, [0], result)   # start is 0 since it's 0 in the question & the path list will be initlaised with 0 since 0 will always be the start of every path
+        dfs(0, [0], result)  # start is 0 since it's 0 in the question & the path list will be initlaised with 0 since 0 will always be the start of every path
 
         return result
 
-    def BFS(self,):
+    def BFS(self):
+        def BFS(self, s):
+            visited = {}
+            for i in self.graph_dict:
+                visited[i] = False
+            queue = []
+            queue.append(s)
+            visited[s] = True
+            while len(queue) != 0:
+                s = queue.pop(0)
+                for node in self.graph_dict[s]:
+                    if visited[node] != True:
+                        visited[node] = True
+                        queue.append(node)
+                print(s, end=" ")
+
 
     def find_shortest_path(self, graph, start, end, path=None):
         pass
@@ -110,15 +123,14 @@ class Graph:
         pass
 
 
-
 # Create the dictionary with graph elements
 
 graph_elements = {
-   "a" : ["b","c"],
-   "b" : ["a", "d"],
-   "c" : ["a", "d"],
-   "d" : ["e"],
-   "e" : ["d"]
+    "a": ["b", "c"],
+    "b": ["a", "d"],
+    "c": ["a", "d"],
+    "d": ["e"],
+    "e": ["d"]
 }
 g = Graph(graph_elements)
 print(g.show_vertices())
@@ -128,8 +140,8 @@ print(g.add_vertex("f"))
 print(g.show_vertices())
 print(g.show_edges())
 
-print(g.add_edge('a','e'))
-print(g.add_edge('a','c'))
+print(g.add_edge('a', 'e'))
+print(g.add_edge('a', 'c'))
 
 print(g.show_vertices())
 print(g.show_edges())
@@ -145,4 +157,5 @@ print(g.show_edges())
 
 - Find the shortest path between two vertices
 
+- Find all paths between two nodes
 """
