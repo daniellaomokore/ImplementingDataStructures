@@ -8,7 +8,6 @@ OPERATIONS:
 - show_edges
 """
 
-
 class Graph:
 
     def __init__(self, graph_dict=None):
@@ -96,6 +95,9 @@ class Graph:
 
         return result
 
+
+    def DFS(self):
+        pass
     def BFS(self):
         def BFS(self, s):
             visited = {}
