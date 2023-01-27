@@ -260,7 +260,7 @@ class LinkedList:
                 break
 
         # STEP 2 - the distance between step1's intersection and the beginning of the cycle(the duplicate number) is Equal to the start of the array and the beginning of the cycle(the duplicate number)
-        # so when two first interescted slow pointer and the second new slow pointer(starting from the beginning of the array) intersect - we have found the beginning of the cycle - hence the duplicate number
+        # so when two first intersected slow pointer and the second new slow pointer(starting from the beginning of the array) intersect - we have found the beginning of the cycle - hence the duplicate number
 
         slowPointer2 = 0 # make the second slow pointer start at the beginning of the array
         while True:
