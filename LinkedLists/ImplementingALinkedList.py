@@ -132,8 +132,6 @@ class LinkedList:
     # and the left will be in the position one node before the node we want to delete
     # so you can do the left pointer.next == left pointer.next.next to delete the node we need to remove
 
-
-
     def search(self, node):
 
         if self.head is None:  # if the list is empty
@@ -223,7 +221,7 @@ class LinkedList:
         elif list2:  # if list2 is the only list that's not empty - meaning list 1 is now empty and there's nothing else to compare list 2 nodes against...
             tail.next = list2  # take the remaining portion of the list and insert it to the tail of the newly formed linked list
 
-            return dummy.next   # 'the '.next' is important as we don't want to include the dummy node'
+            return dummy.next  # 'the '.next' is important as we don't want to include the dummy node'
 
     # correct answer below
     # https://www.youtube.com/watch?v=gBTe7lFR3vc
@@ -244,7 +242,39 @@ class LinkedList:
 
         return False  # no cycle detected
 
-    def remove_nth_node_from_end_of_list(self, n):
+    # Floyd's algorithm - tortoise and hare/fast and slow pointer - detecting a cycle
+    # the question uses an array hence why we don't use '.next'
+    # return the duplicate-no extra space allowed so no using a hash map
+    # for The first intersection point, the distance between it and the beginning of the cycle is equal to the starting point distance to the beginning of the cycle (which is why we use a second slow pointer on step2)
+    def FindTheDuplicateNumber(self, Array):
+
+
+        # both pointers start at the beginning or the array
+
+        slowPointer, fastPointer = 0, 0  # the pointers will always start at index 0 as it will never be a part of the cycle/duplicate
+
+        # STEP 1 -Find where the fast and slow pointer intersect
+        while True:
+            slowPointer = Array[
+                slowPointer]  # slow is set to the number it points at in the array - moves slow ahead once
+            fastPointer = fastPointer[Array[
+                fastPointer]]  # fast is set to the number it points at in the array - nesting fast allows us to move 'fast' ahead twice
+            if slowPointer == fastPointer: # if they intercept
+                break
+
+        # STEP 2 - the distance between step1's intersection and the beginning of the cycle(the duplicate number) is Equal to the start of the array and the beginning of the cycle(the duplicate number)
+        # so when two first interescted slow pointer and the second new slow pointer(starting from the beginning of the array) intersect- we have found the beginning of the cycle - hence the duplicate number
+
+        slowPointer2 = 0 # make the second slow pointer start at the beginning of the array
+        while True:
+            # both slow pointers move ahead by one position
+            slowPointer2 = Array[slowPointer2]
+            slowPointer = Array[slowPointer]
+            if slowPointer == slowPointer2: # if they intercept
+                return slowPointer # return the duplicate number - 'return slowPointer2' will also be valid
+
+
+def remove_nth_node_from_end_of_list(self, n):
         dummy_node = Node(0)
         dummy_node.next = self.head
         left = dummy_node
@@ -256,13 +286,12 @@ class LinkedList:
             n -= 1
 
         while right:  # while right is not None
-            left = left.next       # move the left and right pointer to the right once
+            left = left.next  # move the left and right pointer to the right once
             right = right.next
 
         # delete node n
         left.next = left.next.next
         return dummy_node.next  # 'the '.next' is important as we don't want to include the dummy node'
-
 
     # note we have to use .data in this question because when we make comparison we are comparing the actual Value of the nodes and not just pointer positions like in the 'linkedlistcycle' question
     # this is a nice question because since it's a sorted list, we know that if there's a duplicate value it will be next to the current value
@@ -273,20 +302,18 @@ class LinkedList:
         while current:  # while current is not None
 
             # note we have to write them in this specific order as we need to ensure 'curren.next' is not None FIRST otherwise if it's the otherway round but 'current.next' is None, it wouldn't have caught it out, causing an error when comparing the 'current data == None'
-            while current.next and current.data == current.next.data:   #  while the value next to the current value isn't None AND the current value and the value next to the current value are equal
+            while current.next and current.data == current.next.data:  # while the value next to the current value isn't None AND the current value and the value next to the current value are equal
                 current.next = current.next.next  # delete node
             #  when the nodes aren't the same
             current = current.next  # move current to the next node
 
-        return self.head   # we can return head since head never changes, no dummy node was needed
-
-
+        return self.head  # we can return head since head never changes, no dummy node was needed
 
     # correct solution
     # Split list, Reverse second half of list, merge two lists
-    def reorderList(self,list):
+    def reorderList(self, list):
 
-    # split list into 2
+        # split list into 2
         slowPointer = self.head
         fastPointer = self.head.next
 
@@ -295,40 +322,34 @@ class LinkedList:
             fastPointer = fastPointer.next.next
 
         list2 = slowPointer.next
-        slowPointer.next = None # here we have removed the list 2 portion from the original list to split them
+        slowPointer.next = None  # here we have removed the list 2 portion from the original list to split them
         previous = None
 
-    # reverse list2
+        # reverse list2
         while list2 is not None:
             tempNode = list2.next  # we need a tempNode here as when we reverse the node we break the pointer. so tempNode keeps store of the current.next node
 
-            list2.next = previous   # swap the direction by making your current lis2 node point to previous
+            list2.next = previous  # swap the direction by making your current lis2 node point to previous
             previous = list2  # update the pointer to the previous node now be your current list 2 pointer
             list2 = tempNode  # update the pointer to current list 2 node to be the next node in your list
 
-    # merge the two half's of the list
+        # merge the two half's of the list
 
-    # note that after reversing list2, 'previous' will be set to the head of list 2
+        # note that after reversing list2, 'previous' will be set to the head of list 2
 
         list1 = self.head
         list2 = previous
 
-        while list2 is not None: # we use the list2 here only list 2 could shorter than the list1 when we split the original list into 2- so we base it off of that. For example if the list was made up of 3 nodes, the first hald of the list would be the first 3 nodes and the second half of the list would be the remaining 2 nodes
+        while list2 is not None:  # we use the list2 here only list 2 could shorter than the list1 when we split the original list into 2- so we base it off of that. For example if the list was made up of 3 nodes, the first hald of the list would be the first 3 nodes and the second half of the list would be the remaining 2 nodes
             # we need a tempNodes here because when we reverse the nodes we break the pointer. so temps keeps store of the current.next node
             tempList1 = list1.next
             tempList2 = list2.next
 
             list1.next = list2  # we make our current node in list 1 point to the current node of list 2
-            list2.next = tempList1 # and our current list 2 to node point to the next node of list 1
+            list2.next = tempList1  # and our current list 2 to node point to the next node of list 1
 
-            list1 = tempList1 # now the current list 1 node has been moved one to the right
-            list2 = tempList2 # and the current list 2 node has been moved one to the right
-
-
-
-
-
-
+            list1 = tempList1  # now the current list 1 node has been moved one to the right
+            list2 = tempList2  # and the current list 2 node has been moved one to the right
 
 
 myLL = LinkedList()
@@ -359,9 +380,7 @@ print(myLL.return_LinkedList())
 print(myLL.delete_at_head())
 print(myLL.return_LinkedList())
 
-
 "Interview Qs"
-
 
 """
 
@@ -371,4 +390,3 @@ print(myLL.return_LinkedList())
 - Remove duplicates from a linked list -
 
 """
-
