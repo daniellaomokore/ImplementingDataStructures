@@ -242,28 +242,25 @@ class LinkedList:
 
         return False  # no cycle detected
 
+    # this is like an extension of the question above
     # Floyd's algorithm - tortoise and hare/fast and slow pointer - detecting a cycle
     # the question uses an array hence why we don't use '.next'
     # return the duplicate-no extra space allowed so no using a hash map
     # for The first intersection point, the distance between it and the beginning of the cycle is equal to the starting point distance to the beginning of the cycle (which is why we use a second slow pointer on step2)
     def FindTheDuplicateNumber(self, Array):
-
-
         # both pointers start at the beginning or the array
 
         slowPointer, fastPointer = 0, 0  # the pointers will always start at index 0 as it will never be a part of the cycle/duplicate
 
         # STEP 1 -Find where the fast and slow pointer intersect
         while True:
-            slowPointer = Array[
-                slowPointer]  # slow is set to the number it points at in the array - moves slow ahead once
-            fastPointer = fastPointer[Array[
-                fastPointer]]  # fast is set to the number it points at in the array - nesting fast allows us to move 'fast' ahead twice
+            slowPointer = Array[slowPointer]  # slow is set to the number it points at in the array - moves slow ahead once
+            fastPointer = Array[Array[fastPointer]]  # fast is set to the number it points at in the array - nesting fast allows us to move 'fast' ahead twice
             if slowPointer == fastPointer: # if they intercept
                 break
 
         # STEP 2 - the distance between step1's intersection and the beginning of the cycle(the duplicate number) is Equal to the start of the array and the beginning of the cycle(the duplicate number)
-        # so when two first interescted slow pointer and the second new slow pointer(starting from the beginning of the array) intersect- we have found the beginning of the cycle - hence the duplicate number
+        # so when two first interescted slow pointer and the second new slow pointer(starting from the beginning of the array) intersect - we have found the beginning of the cycle - hence the duplicate number
 
         slowPointer2 = 0 # make the second slow pointer start at the beginning of the array
         while True:
