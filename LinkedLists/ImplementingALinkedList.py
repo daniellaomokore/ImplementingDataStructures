@@ -349,6 +349,10 @@ def remove_nth_node_from_end_of_list(self, n):
             list2 = tempList2  # and the current list 2 node has been moved one to the right
 
 
+    def addTwoNumbers():
+        pass
+
+
 myLL = LinkedList()
 
 print(myLL.insert_at_head(6))
