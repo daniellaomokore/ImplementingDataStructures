@@ -298,7 +298,7 @@ def remove_nth_node_from_end_of_list(self, n):
 
         while current:  # while current is not None
 
-            # note we have to write them in this specific order as we need to ensure 'curren.next' is not None FIRST otherwise if it's the otherway round but 'current.next' is None, it wouldn't have caught it out, causing an error when comparing the 'current data == None'
+            # note we have to write them in this specific order as we need to ensure 'current.next' is not None FIRST otherwise if it's the otherway round but 'current.next' is None, it wouldn't have caught it out, causing an error when comparing the 'current data == None'
             while current.next and current.data == current.next.data:  # while the value next to the current value isn't None AND the current value and the value next to the current value are equal
                 current.next = current.next.next  # delete node
             #  when the nodes aren't the same
