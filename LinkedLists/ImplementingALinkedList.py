@@ -117,6 +117,20 @@ class LinkedList:
 
         return "Node at index {} deleted.".format(index)
 
+
+    # CODECADEMY Q - COMPLETE THIS
+    def remove_node(self, node_to_remove):
+
+        current_node=self.head
+
+        if node_to_remove == current_node:  # if the node is the head node
+            self.delete_at_head()
+
+        else:
+            current_node = current_node.next
+
+        return
+
     def get_node_at_index(self, index):
         current_node = self.head
 
