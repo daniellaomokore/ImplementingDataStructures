@@ -8,7 +8,7 @@ OPERATIONS:
 Rule:the left node must be smaller than the root node If the node is greater than the parent node it is inserted as a
 right node, otherwise it's inserted left.
 
--Size - returns the size of the linked list
+-Size - returns the size of the binary tree
 
 -find_value - this check if a value exists in the tree or not. When searching for a node in a tree, we transverse the
 node from left to right with a parent.
