@@ -40,3 +40,40 @@ def isAnagram(self, s: str, t: str) -> bool:
         else:
             return False
 
+#[::-1]    - use this to reverse string, list, array, tuple etc
+#.isalnum()   - returns True if something is alphanumeric(a letter and/or number only)
+def isPalindrome(self, s: str) -> bool:
+    fixedString = []
+    for element in s:
+        if element.isalnum() == True:
+            fixedString.append(element.lower())
+    if fixedString == fixedString[::-1]:
+        return True
+    else:
+        return False
+
+#or
+def isPalindrome(self, s: str) -> bool:
+        fixedString = []
+        for element in s:
+            if element.isalnum() == True:
+                fixedString.append(element.lower())
+        return fixedString == fixedString[::-1]
+
+# or 2 pointer method which is a good DSA method + better for space
+def isPalindrome(self, s: str) -> bool:
+    left, right = 0, len(s) - 1
+    while left < right:
+        while left < right and not (s[left]).isalnum():
+            left += 1
+        while left < right and not (s[right]).isalnum():
+            right -= 1
+        if s[left].lower() != s[right].lower():
+            return False
+        left += 1
+        right -= 1
+    return True
+
+
+
+
