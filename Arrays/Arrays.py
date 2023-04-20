@@ -25,20 +25,23 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
 
 
 
-#dict.get(key,value)
+#Use -> from collections import defaultdict
+
+from collections import defaultdict
 def isAnagram(self, s: str, t: str) -> bool:
-        
-        sCount={}
-        tCount={}
+
+        sCount = defaultdict(int)  # creates a dict which has the values default to 0
+        tCount = defaultdict(int)
 
         for letterS in s:
-            sCount[letterS]=sCount.get(letterS,0)+1
+            sCount[letterS]+=1
         for letterT in t:
-            tCount[letterT]=tCount.get(letterT,0)+1
+            tCount[letterT]+=1
         if sCount == tCount:
             return True
         else:
             return False
+
 
 #[::-1]    - use this to reverse string, list, array, tuple etc
 #.isalnum()   - returns True if something is alphanumeric(a letter and/or number only)

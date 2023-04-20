@@ -403,5 +403,6 @@ print(myLL.return_LinkedList())
 - Detect loop in a linked list -
 - Return Nth node from the end in a linked list -
 - Remove duplicates from a linked list -
-
+- Merge Two Sorted Lists
+- Linked List Cycle
 """
