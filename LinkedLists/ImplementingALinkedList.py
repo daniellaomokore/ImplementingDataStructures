@@ -199,18 +199,20 @@ class LinkedList:
     # https://www.youtube.com/watch?v=G0_I-ZF0S38
     def reverse_a_linked_list(self):
         # initialise pointers
-        previous = None
         current = self.head
+        previous = None
 
-        while current is not None:  # while you're not at the end of the list
-            nxt = current.next  # temporary variable to save 'current.next'
+        while current is not None:  # while the current value is not none, aka when we aren't at the end of the list
+            savedNextNode = current.next  # keep track of the current node's original 'next node'.
 
             current.next = previous  # reversing the pointer's direction
             previous = current
 
-            current = nxt
+            current = savedNextNode
 
         return previous  # the result is stored in previous when the loop stops executing
+
+
 
     # correct answer below
     # https://www.youtube.com/watch?v=XIdigk956u0
