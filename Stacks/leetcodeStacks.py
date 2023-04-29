@@ -1,21 +1,3 @@
-class Solution:
-    def isValidParentheses(self, s: str) -> bool:
-
-        Map = {")": "(", "]": "[", "}": "{"}
-        stack = []
-
-        for item in s:
-            if item in Map.values():  # if the item is an opening bracket
-                stack.append(item)  # add it to the stack
-            elif stack and stack[-1] == Map[
-                item]:  # else if the stack isn't empty and the last current bracket in the stack matches the closing bracket
-                stack.pop()  # remove the opening bracket from the stack
-            else:
-                return False
-
-        return stack == []
-
-
 class MinStack:
 
     # lifo

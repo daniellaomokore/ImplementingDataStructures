@@ -14,6 +14,21 @@ right node, otherwise it's inserted left.
 node from left to right with a parent.
 
 - print_tree_in_order - prints the tree 'in order' which is -> left then root then right
+
+SEARCH:
+
+Ways to traverse a Binary Search Tree:
+--------------------------------------
+Inorder traversal: In inorder traversal, we first visit the left subtree, then the current node, and then the right subtree. This way of traversal will visit the nodes of the BST in ascending order.
+
+Preorder traversal: In preorder traversal, we first visit the current node, then the left subtree, and then the right subtree.
+
+Postorder traversal: In postorder traversal, we first visit the left subtree, then the right subtree, and then the current node.
+
+
+Inorder Traversal is most used for binary search Tree.
+
+
 """
 
 
@@ -27,25 +42,28 @@ class Node:
 
 
     # Uses recursion
-    def insert(self,insert_node):
+    def insert(self,new_node):
 
         if self.data: # if there is a parent node
-            if insert_node < self.data:  # if the node you want to insert is smaller than the current node
+            if new_node < self.data:  # if the node you want to insert is smaller than the current node
                 if self.left is None:  # if the left child of that node is empty
-                    self.left = Node(insert_node)  # insert your node there
+                    self.left = Node(new_node)  # insert your node there
                 else:   # else if the left child of the node already has a value
-                    self.left.insert(insert_node)  # carry out the same operation but to that left child node -
+                    self.left.insert(new_node)  # carry out the same operation but to that left child node - recursion
                     # basically moving down the left side of the tree
-            elif insert_node > self.data: # else if the node you want to insert is larger than the current node
+            elif new_node > self.data: # else if the node you want to insert is larger than the current node
                 if self.right is None:  # if the right child of that node is empty
-                    self.right = Node(insert_node)  # insert your node there
+                    self.right = Node(new_node)  # insert your node there
                 else:   # else if the right child of the node already has a value
-                    self.right.insert(insert_node)  # carry out the same operation but to that right child node -
+                    self.right.insert(new_node)  # carry out the same operation but to that right child node -
                     # basically moving down the right side of the tree
         else:  # else if there isn't a parent node
-            self.data = insert_node  # make the node you want to insert the parent node
+            self.data = Node(new_node)  # make the node you want to insert the parent node
 
-        return "{} has been inserted".format(insert_node)
+        return "{} has been inserted".format(new_node)
+
+
+
     # function to delete the given deepest node (d_node) in binary tree
 
     # function to delete element in binary tree
@@ -55,18 +73,78 @@ class Node:
         if value < self.data:  # if the value you want to find is smaller than the parent node
             if self.left is None:    # if the parent node has no left child
                 return "{} is not Found".format(value)
-            return self.left.find_value(value)  # search that node and it's child nodes to see if the value you are
+            else:
+                return self.left.find_value(value)  # search that node and it's child nodes to see if the value you are
             # searching for is one of them - you're basically moving down the left side of the tree
         elif value > self.data:
             if self.right is None:  # if the parent node has no right child
                 return "{} is not Found".format(value)
-            return self.right.find_value(value)  # search that node and it's child nodes to see if the value you are
+            else:
+                return self.right.find_value(value)  # search that node and it's child nodes to see if the value you are
             # searching for is one of them - you're basically moving down the right side of the tree
         else:   # if the parent node the value of node you are searching is equal
             return "{} is Found".format(value)
 
-    def delete(self, node):
-        pass
+    def inorder_traversal(self):
+        if self.left:
+            self.inorder_traversal(self.left)
+        print(self.data)
+        if self.right:
+            self.inorder_traversal(self.right)
+
+    def preorder_traversal(self):
+        print(self.data)
+        if self.left:
+            self.preorder_traversal(self.left)
+        if self.right:
+            self.preorder_traversal(self.right)
+
+    def postorder_traversal(self):
+        if self.left:
+            self.postorder_traversal(self.left)
+        if self.right:
+            self.postorder_traversal(self.right)
+        print(self.data)
+
+
+
+
+    #recursion
+    def delete(self, root, delete_node):
+        if not root: # if there's no parent node
+            return "This BST is already empty."
+
+        if root.val == node:
+            if not self.left and self
+
+        if root.data > delete_node:
+            root.right = self.delete(root.left,delete_node)
+        elif root.data < delete_node:
+            root.left = self.delete(root.right,delete_node)
+        elif root.data == delete_node:
+            if not root.left:
+                return root.right
+            elif not root.right:
+                return root.left
+
+            #find the min from right subtree
+            cur = root.right
+            while cur.left:
+                cur = cur.left
+            root.val = cur.val
+            root.right = self.delete(root.right,root.data)
+        return root
+
+
+
+
+
+
+
+
+
+
+
 
     # uses recursion
     def print_tree_in_order(self):
