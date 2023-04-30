@@ -111,28 +111,38 @@ class Node:
 
     #recursion
     def delete(self, root, delete_node):
-        if not root: # if there's no parent node
+        # If there's no parent node
+        if not root:
             return "This BST is already empty."
 
-        if root.val == node:
-            if not self.left and self
-
-        if root.data > delete_node:
-            root.right = self.delete(root.left,delete_node)
-        elif root.data < delete_node:
-            root.left = self.delete(root.right,delete_node)
-        elif root.data == delete_node:
-            if not root.left:
+        # If the root node is the node to be deleted
+        if root.val == delete_node:
+            # If the node has no children
+            if not root.left and not root.right:
+                return None
+            # If the node has only one child
+            elif not root.left:
                 return root.right
             elif not root.right:
                 return root.left
+            # If the node has two children
+            else:
+                # Find the minimum value node in the right subtree
+                cur = root.right
+                while cur.left:
+                    cur = cur.left
+                # Assign the minimum value to the root node
+                root.val = cur.val
+                # Recursively delete the minimum node from the right subtree
+                root.right = self.delete(root.right, cur.val)
 
-            #find the min from right subtree
-            cur = root.right
-            while cur.left:
-                cur = cur.left
-            root.val = cur.val
-            root.right = self.delete(root.right,root.data)
+        # If the value of the node to be deleted is less than the value of the current node
+        elif root.val > delete_node:
+            root.left = self.delete(root.left, delete_node)
+        # If the value of the node to be deleted is greater than the value of the current node
+        elif root.val < delete_node:
+            root.right = self.delete(root.right, delete_node)
+
         return root
 
 
